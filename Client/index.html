@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script src="client.js"></script>
+		<script src="jquery.js"></script>
+		<script src="jquery-ui.js"></script>
+		<link rel="stylesheet" href="jquery-ui.css">
+		<link rel="stylesheet" href="client.css">
+	</head>
+	<body>
+		<div class="header"><div class="bd"><h3>MafiaB by Kradre(One room test)</h3></div></div>
+		<div class="filler"></div>
+		<div class="login">
+			<div class="nam">Your nick: </div>
+			<input id="nick" type="text">
+			<div class="nam">Server ip: </div>
+			<input id="server" type="text">
+			<div class="nam"></div>
+			<button onclick="connect()">Connect</button>
+		</div>
+		<div class="lobby">
+			<div class="console">
+				<div class="msg">Connection with server</div>
+			</div>
+			<div class="playerssp">
+				<select size="15" class="players">
+				</select>
+				<div class="flp">
+				</div>
+			</div>
+			<div></div>
+			<div class="chat">
+				<input id="chat" type="text" cols="40" rows="5">
+				<button onclick="send('msg')">Send</button>
+				<button onclick="send('cse')">Choice</button>
+			</div>
+		</div>
+	</body>
+</html>
