@@ -1,7 +1,7 @@
 var WebSocketServer = new require('ws');
 var WebSocket = new require('ws');
 console.log('Game: MafiaB');
-console.log('Version: V0.2(Pre-build)');
+console.log('Version: V0.3(Alpha)');
 console.log('Server running on 8081 port');
 console.log('Master-server connection is disabled');
 // Connection to master-server(Soon)
@@ -70,6 +70,9 @@ webSocketServer.on('connection', function(ws) {
 				
 			}
 		}
+		else if (night == 0) {
+			
+		}
 	}
     
   });
@@ -80,10 +83,9 @@ webSocketServer.on('connection', function(ws) {
 	  PStart = 999;
 	  game = 1;
 	  night = 0;
-	  day = 1;
 	  votes = taken.length;
 	  
-	  if (players == 6) {
+	  if (players == 7) {
 		  roles = shuffle(roles7);
 		  for (var key in clients) {
 			rd++;
@@ -92,7 +94,7 @@ webSocketServer.on('connection', function(ws) {
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
-	  else if (players == 7) {
+	  else if (players == 8) {
 		  roles = shuffle(roles8);
 		  for (var key in clients) {
 			  rd++;
@@ -101,7 +103,7 @@ webSocketServer.on('connection', function(ws) {
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
-	  else if (players == 8) {
+	  else if (players == 9) {
 		  roles = shuffle(roles9);
 		  for (var key in clients) {
 			  rd++;
@@ -110,7 +112,7 @@ webSocketServer.on('connection', function(ws) {
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
-	  else if (players == 9) {
+	  else if (players == 10) {
 		  roles = shuffle(roles10);
 		  for (var key in clients) {
 			  rd++;
@@ -119,7 +121,7 @@ webSocketServer.on('connection', function(ws) {
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
-	  else if (players == 10) {
+	  else if (players == 11) {
 		  roles = shuffle(roles11);
 		  for (var key in clients) {
 			  rd++;
