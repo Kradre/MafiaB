@@ -43,26 +43,26 @@ function connect() {
 					//Dispensing roles
 					role = test[2];
 					if (test[2] == 1) {
-						$( ".console" ).append('<div class="msg">Вы - мирный житель. Голосуйте, чтобы истребить мафию.</div>');
+						$( ".console" ).append('<div class="msg">You are villager. At day, vote mafia to kill it.</div>');
 					}
 					else if (test[2] == 2) {
-						$( ".console" ).append('<div class="msg">Вы - мафия. Убейте всех, дабы получить город.</div>');
+						$( ".console" ).append('<div class="msg">You are mafia. Kill all villagers to take control over city.</div>');
 					}
 					else if (test[2] == 3) {
-						$( ".console" ).append('<div class="msg">Вы - коммисар. Вы должны раскрыть мафию ночью.</div>');
+						$( ".console" ).append('<div class="msg">You are inspector. You should relevate mafia at night.</div>');
 					}
 					else if (test[2] == 4) {
-						$( ".console" ).append('<div class="msg">Вы - доктор. Спасайте гражданских(или себя) от смерти.</div>');
+						$( ".console" ).append('<div class="msg">You are doctor. Save villagers(and not only) from death at night.</div>');
 					}
 					else if (test[2] == 5) {
-						$( ".console" ).append('<div class="msg">Вы - маньяк. Убей всех.</div>');
+						$( ".console" ).append('<div class="msg">You are killer. Kill everyone.</div>');
 					}
 					else if (test[2] == 6) {
-						$( ".console" ).append('<div class="msg">Вы - проститутка. Вы*** всех.</div>');
+						$( ".console" ).append('<div class="msg">You are prostitute. F*** everyone.</div>');
 					}
 				}
 				else if (test[1] == "day") {
-					$( ".console" ).append('<div class="msg">Вы - проститутка. Вы*** всех.</div>');
+					$( ".console" ).append('<div class="msg">Another day: ' + test[2] +'</div>');
 				}
 		}
 		else if (test[0] == 'dc') {
@@ -70,11 +70,11 @@ function connect() {
 			socket.close();
 			if (test[1] == 'full') {
 				//Game started already
-				$( ".console" ).append('<div class="msg">Отключен - игра уже началась.</div>');
+				$( ".console" ).append('<div class="msg">Disconnected - game started already.</div>');
 			}
 			if (test[1] == "kill") {
 				//Player killed
-				$( ".console" ).append('<div class="msg">Вы были убиты.</div>');
+				$( ".console" ).append('<div class="msg">You are killed.</div>');
 			}
 			
 		}
@@ -96,7 +96,7 @@ function send(g) {
 			socket.send(message);
 		}
 		else if ((g == 'cse') && (game==0)) {
-			$( ".console" ).append('<div class="msg">Игра ещё не началась.</div>');
+			$( ".console" ).append('<div class="msg">Game not started</div>');
 		}
 		return false;
 	};

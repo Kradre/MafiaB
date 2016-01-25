@@ -76,7 +76,7 @@ webSocketServer.on('connection', function(ws) {
  //TODO: System of day/night
  //Automatic system of dispensing roles.
   if (PStart == players) {
-	  console.log("Игра началась");
+	  console.log("Game started");
 	  PStart = 999;
 	  game = 1;
 	  night = 0;
@@ -148,7 +148,7 @@ webSocketServer.on('connection', function(ws) {
 		}},0);
 	  }
 	  else {
-		  console.log("Player " + id + " отключен от сервера");
+		  console.log("Player " + id + " disconnected from server");
 		  delete clients[id];
 		  delete nicks[id];
 		  PStart--;
