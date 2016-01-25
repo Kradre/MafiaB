@@ -7,8 +7,13 @@ console.log('Master-server connection is disabled');
 // Connection to master-server(Soon)
 //var socket = new WebSocket("ws://kradre.ru:8081");
 var game = 0;
+var voting1 = 0;
+var voting2 = 0;
+var voting3 = 0;
+var voting4 = 0;
+var voting5 = 0;
 var night = 999;
-var day = 999;
+var votes = 888;
 var clients = {};
 var nicks = {};
 var taken = {};
@@ -48,7 +53,7 @@ webSocketServer.on('connection', function(ws) {
   ws.on('message', function(message) {
 	var msg = message.split('§');
 	if (msg[0] == 'nick') {
-		nicks[id] = msg[1];
+		nicks[msg[1]] = ws;
 		console.log("Player " + nicks[id] + " connected to server");
 		PStart++;
 		for (var key in clients){
@@ -71,25 +76,35 @@ webSocketServer.on('connection', function(ws) {
 			}
 		}
 		else if (night == 0) {
-			
+			voting1++;
 		}
 	}
     
   });
  //TODO: System of day/night
+ if (voting1==votes) {
+	 voting1 = 0;
+	  for (var key in clients) {
+		  
+	  }
+  }
  //Automatic system of dispensing roles.
+  
   if (PStart == players) {
 	  console.log("Game started");
 	  PStart = 999;
 	  game = 1;
 	  night = 0;
 	  votes = taken.length;
-	  
+	  voting1 = 0;
 	  if (players == 7) {
 		  roles = shuffle(roles7);
 		  for (var key in clients) {
 			rd++;
 			taken[key] == roles[rd];
+			if (roles[rd] == 2) {
+				
+			}
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
