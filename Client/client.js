@@ -93,7 +93,7 @@ function send(g) {
 		}
 		else if ((g == 'cse') && (game==1)) {
 			message = g + "§" + $(".players :selected").text();
-			$(.rem).prop("disabled",true);
+			$('.rem').prop("disabled",true);
 			socket.send(message);
 		}
 		else if ((g == 'cse') && (game==0)) {
