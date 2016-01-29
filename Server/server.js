@@ -43,8 +43,6 @@ webSocketServer.on('connection', function(ws) {
 	  clients[id].send('dc§full');
   }
   else {
-  console.log("Player " + id + " connected to server");
-  
   
 	for (var key in clients) {
 		clients[key].send('reload§');
@@ -53,7 +51,7 @@ webSocketServer.on('connection', function(ws) {
   ws.on('message', function(message) {
 	var msg = message.split('§');
 	if (msg[0] == 'nick') {
-		nicks[msg[1]] = ws;
+		nicks[id] = msg[1];
 		console.log("Player " + nicks[id] + " connected to server");
 		PStart++;
 		for (var key in clients){
