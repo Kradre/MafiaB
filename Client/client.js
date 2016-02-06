@@ -81,7 +81,7 @@ function connect() {
 	};
 	
 }
-
+//Fixing symbols
 function send(g) {
 		if (g == 'msg') {
 			message = g + "§" + $('#chat').val();
