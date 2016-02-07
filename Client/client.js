@@ -1,4 +1,4 @@
-var socket = new WebSocket();
+﻿var socket = new WebSocket();
 var game = 0;
 // Create connection
 function connect() {
@@ -63,6 +63,7 @@ function connect() {
 				}
 				else if (test[1] == "day") {
 					$( ".console" ).append('<div class="msg">Another day: ' + test[2] +'</div>');
+					choicer.disabled = false;
 				}
 		}
 		else if (test[0] == 'dc') {
@@ -88,16 +89,21 @@ function send(g) {
 			socket.send(message);
 		}
 		else if (g == 'nick') {
+			
 			message = g + "§" + $('#nick').val();
 			socket.send(message);
 		}
-		else if ((g == 'cse') && (game==1)) {
-			message = g + "§" + $(".players :selected").text();
-			$('.rem').prop("disabled",true);
-			socket.send(message);
-		}
-		else if ((g == 'cse') && (game==0)) {
-			$( ".console" ).append('<div class="msg">Game not started</div>');
+		else if (g == 'cse') {
+			if (game==1) {
+				message = g + "§" + $(".players :selected").text();
+				document.getElementById("rem").disabled = true;
+				socket.send(message);
+			}
+			else {
+				console.log("ts");
+				$( ".console" ).append('<div class="msg">Game not started</div>');
+				document.getElementById("rem").disabled = true;
+			}	
 		}
 		return false;
 	};

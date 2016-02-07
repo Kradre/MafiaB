@@ -1,4 +1,4 @@
-// For the brave souls who get this far: You are the chosen ones,
+﻿// For the brave souls who get this far: You are the chosen ones,
 // the valiant knights of programming who toil away, without rest,
 // fixing our most awful code. To you, true saviors, kings of men,
 // I say this: never gonna give you up, never gonna let you down,
@@ -6,7 +6,52 @@
 // never gonna say goodbye. Never gonna tell a lie and hurt you.
 var WebSocketServer = new require('ws');
 var WebSocket = new require('ws');
-console.log('Game: MafiaB');
+var welcome = Math.random();
+if (welcome > 0.9){
+	welcome = 0;
+	console.log(' _|      _|    _|_|    _|_|_|_|  _|_|_|    _|_|        _|_|_|    ');
+	console.log(' _|_|  _|_|  _|    _|  _|          _|    _|    _|      _|    _|  ');
+	console.log(' _|  _|  _|  _|_|_|_|  _|_|_|      _|    _|_|_|_|      _|_|_|    ');
+	console.log(' _|      _|  _|    _|  _|          _|    _|    _|      _|    _|  ');
+	console.log(' _|      _|  _|    _|  _|        _|_|_|  _|    _|      _|_|_|    ');
+	console.log('');
+	console.log('');
+}
+else if (0.9 > welcome > 0.8) {
+	welcome = 0;
+	console.log('888b     d888        d8888 8888888888 8888888        d8888       888888b.   ');
+	console.log('8888b   d8888       d88888 888          888         d88888       888  "88b  ');
+	console.log('88888b.d88888      d88P888 888          888        d88P888       888  .88P  ');
+	console.log('888Y88888P888     d88P 888 8888888      888       d88P 888       8888888K.  ');
+	console.log('888 Y888P 888    d88P  888 888          888      d88P  888       888  "Y88b ');
+	console.log('888  Y8P  888   d88P   888 888          888     d88P   888       888    888 ');
+	console.log('888   "   888  d8888888888 888          888    d8888888888       888   d88P ');
+	console.log('888       888 d88P     888 888        8888888 d88P     888       8888888P"  ');
+	console.log('');
+	console.log('');
+}
+else if (0.8 > welcome > 0.7) {
+	welcome = 0;
+	console.log('.::       .::      .:       .::::::::.::      .:            .:: .::   ');
+	console.log('.: .::   .:::     .: ::     .::      .::     .: ::          .:    .:: ');
+	console.log('.:: .:: . .::    .:  .::    .::      .::    .:  .::         .:     .::');
+	console.log('.::  .::  .::   .::   .::   .::::::  .::   .::   .::        .::: .:   ');
+	console.log('.::   .:  .::  .:::::: .::  .::      .::  .:::::: .::       .:     .::');
+	console.log('.::       .:: .::       .:: .::      .:: .::       .::      .:      .:');
+	console.log('.::       .::.::         .::.::      .::.::         .::     .:::: .:: ');
+	console.log('');
+	console.log('');
+}
+else if (0.7 > welcome > 0.6) {
+	welcome = 0;
+	console.log('');
+	console.log('');
+}
+else if (0.6 > welcome > 0.5) {
+	welcome = 0;
+	console.log('');
+	console.log('');
+}
 console.log('Version: V0.3(Alpha)');
 console.log('Server running on 8081 port');
 console.log('Master-server connection is disabled');
@@ -24,7 +69,7 @@ var clients = {};
 var nicks = {};
 var taken = {};
 // Amont of players, allowed on this server.
-var players = 6;
+var players = 7;
 // 1 - Villager. 2 - Mafia/Werewolfs. 3 - Inspector. 4 - Doctor. 5 - Killer. 6 - Prostitute.
 var roles7 = [1,1,3,1,1,2,2];
 var roles8 = [1,5,3,4,1,2,2,2];
@@ -49,7 +94,6 @@ webSocketServer.on('connection', function(ws) {
 	  clients[id].send('dc§full');
   }
   else {
-  
 	for (var key in clients) {
 		clients[key].send('reload§');
 	}
@@ -67,7 +111,7 @@ webSocketServer.on('connection', function(ws) {
 		}
 	}
 	else if (msg[0] == 'msg') {
-		console.log('Player ' + id + ' sended message: ' + msg[1]);
+		console.log('Player ' + nicks[id] + ' sended message: ' + msg[1]);
 		for (var key in clients) {
 			clients[key].send('msg§' + nicks[id] + ": " + msg[1]);
 		}
@@ -156,7 +200,7 @@ webSocketServer.on('connection', function(ws) {
  //TODO: Usual commands
   ws.on('close', function() {
 	  if (game == 1) {
-		  console.log("Player " + id + " disconnected from server");
+		  console.log("Player " + nicks[id] + " disconnected from server");
 		  delete clients[id];
 		  delete nicks[id];
 		  for (var key in clients) {
@@ -169,7 +213,7 @@ webSocketServer.on('connection', function(ws) {
 		}},0);
 	  }
 	  else {
-		  console.log("Player " + id + " disconnected from server");
+		  console.log("Player " + nicks[id] + " disconnected from server");
 		  delete clients[id];
 		  delete nicks[id];
 		  PStart--;
