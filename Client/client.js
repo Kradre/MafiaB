@@ -1,5 +1,6 @@
 ﻿var socket = new WebSocket();
 var game = 0;
+var role = 0;
 // Create connection
 function connect() {
 	ad = document.getElementById('server').value;
@@ -38,6 +39,7 @@ function connect() {
 					//Start game
 					$( ".console" ).append('<div class="msg">Game started</div>');
 					game = 1;
+					document.getElementById("rem").disabled = false;
 				}
 				else if (test[1] == "role") {
 					//Dispensing roles
@@ -63,7 +65,10 @@ function connect() {
 				}
 				else if (test[1] == "day") {
 					$( ".console" ).append('<div class="msg">Another day: ' + test[2] +'</div>');
-					choicer.disabled = false;
+					document.getElementById("rem").disabled = false;
+				}
+				else if ((test[1] == "night") && (role == 1)) {
+					document.getElementById("rem").disabled = true;
 				}
 		}
 		else if (test[0] == 'dc') {

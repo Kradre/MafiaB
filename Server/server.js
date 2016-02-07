@@ -42,16 +42,6 @@ else if (0.8 > welcome > 0.7) {
 	console.log('');
 	console.log('');
 }
-else if (0.7 > welcome > 0.6) {
-	welcome = 0;
-	console.log('');
-	console.log('');
-}
-else if (0.6 > welcome > 0.5) {
-	welcome = 0;
-	console.log('');
-	console.log('');
-}
 console.log('Version: V0.3(Alpha)');
 console.log('Server running on 8081 port');
 console.log('Master-server connection is disabled');
