@@ -62,7 +62,11 @@ var taken = {};
 var players = 7;
 // 1 - Villager. 2 - Mafia/Werewolfs. 3 - Inspector. 4 - Doctor. 5 - Killer. 6 - Prostitute.
 var roles7 = [1,1,3,1,1,2,2];
+var r7full = 11;
+var r7active = 7;
 var roles8 = [1,5,3,4,1,2,2,2];
+var r8full = 20;
+var r9active = 18;
 var roles9 = [1,1,5,3,4,1,2,2,2];
 var roles10 = [1,1,5,3,4,1,2,2,2,1];
 var roles11 = [1,1,5,3,4,1,2,2,2,6,2];
