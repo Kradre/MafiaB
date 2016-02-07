@@ -110,7 +110,17 @@ webSocketServer.on('connection', function(ws) {
 	else if (msg[0] == 'cse') {
 		if (night == 1) {
 			if (taken[id] == 2) {
-				
+				voting2++;
+				name2[voting2] = msg[1];
+			}
+			if (taken[id] == 3) {
+				voting3++;
+			}
+			if (taken[id] == 4) {
+				voting4++;
+			}
+			if (taken[id] == 5) {
+				voting5++;
 			}
 		}
 		else if (night == 0) {
@@ -135,6 +145,10 @@ webSocketServer.on('connection', function(ws) {
 	  night = 0;
 	  votes = taken.length;
 	  voting1 = 0;
+	  voting2 = 0;
+	  voting3 = 0;
+	  voting4 = 0;
+	  voting5 = 0;
 	  if (players == 7) {
 		  roles = shuffle(roles7);
 		  for (var key in clients) {
