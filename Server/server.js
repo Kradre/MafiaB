@@ -42,19 +42,14 @@ else if (0.8 > welcome > 0.7) {
 	console.log('');
 	console.log('');
 }
-console.log('Version: V0.3(Alpha)');
+console.log('Version: V0.4(Alpha)');
 console.log('Server running on 8081 port');
 console.log('Master-server connection is disabled');
+console.log('Made by Kradre');
 // Connection to master-server(Soon)
 //var socket = new WebSocket("ws://kradre.ru:8081");
 var game = 0;
-var voting1 = 0;
-var voting2 = 0;
-var voting3 = 0;
-var voting4 = 0;
-var voting5 = 0;
 var night = 999;
-var votes = 888;
 var clients = {};
 var nicks = {};
 var taken = {};
@@ -62,16 +57,20 @@ var taken = {};
 var players = 7;
 // 1 - Villager. 2 - Mafia/Werewolfs. 3 - Inspector. 4 - Doctor. 5 - Killer. 6 - Prostitute.
 var roles7 = [1,1,3,1,1,2,2];
-var r7full = 11;
-var r7active = 7;
+var r7 = [11,7]; //For choices
 var roles8 = [1,5,3,4,1,2,2,2];
-var r8full = 20;
-var r9active = 18;
+var r8 = [20,18]
 var roles9 = [1,1,5,3,4,1,2,2,2];
+var r9 = [21,18];
 var roles10 = [1,1,5,3,4,1,2,2,2,1];
+var r10 = [22,18];
 var roles11 = [1,1,5,3,4,1,2,2,2,6,2];
-var PStart = 0;
+var r11 = [24,21];
+var PStart = 1;
 var rd = -1;
+//For votes
+var dayvote;
+var nightvote;
 // MafiaB-server on port 8081
 var webSocketServer = new WebSocketServer.Server({
   port: 8081
@@ -79,6 +78,9 @@ var webSocketServer = new WebSocketServer.Server({
 function shuffle(o){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
+}
+function maff (d) {
+	
 }
 webSocketServer.on('connection', function(ws) {
 
@@ -114,32 +116,26 @@ webSocketServer.on('connection', function(ws) {
 	else if (msg[0] == 'cse') {
 		if (night == 1) {
 			if (taken[id] == 2) {
-				voting2++;
-				name2[voting2] = msg[1];
+				
 			}
 			if (taken[id] == 3) {
-				voting3++;
+				
 			}
 			if (taken[id] == 4) {
-				voting4++;
+				
 			}
 			if (taken[id] == 5) {
-				voting5++;
+				
 			}
 		}
 		else if (night == 0) {
-			voting1++;
+			
 		}
 	}
     
   });
  //TODO: System of day/night
- if (voting1==votes) {
-	 voting1 = 0;
-	  for (var key in clients) {
-		  
-	  }
-  }
+
  //Automatic system of dispensing roles.
   
   if (PStart == players) {
@@ -147,56 +143,57 @@ webSocketServer.on('connection', function(ws) {
 	  PStart = 999;
 	  game = 1;
 	  night = 0;
-	  votes = taken.length;
-	  voting1 = 0;
-	  voting2 = 0;
-	  voting3 = 0;
-	  voting4 = 0;
-	  voting5 = 0;
 	  if (players == 7) {
 		  roles = shuffle(roles7);
+		  dayvote = r7[0];
+		  nightvote = r7[1];
 		  for (var key in clients) {
 			rd++;
 			taken[key] == roles[rd];
-			if (roles[rd] == 2) {
-				
-			}
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
 	  else if (players == 8) {
 		  roles = shuffle(roles8);
+		  dayvote = r8[0];
+		  nightvote = r8[1];
 		  for (var key in clients) {
-			  rd++;
-			  taken[key] == roles[rd];
+			rd++;
+			taken[key] == roles[rd];
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
 	  else if (players == 9) {
 		  roles = shuffle(roles9);
+		  dayvote = r9[0];
+		  nightvote = r9[1];
 		  for (var key in clients) {
-			  rd++;
-			  taken[key] == roles[rd];
+			rd++;
+			taken[key] == roles[rd];
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
 	  else if (players == 10) {
 		  roles = shuffle(roles10);
+		  dayvote = r10[0];
+		  nightvote = r10[1];
 		  for (var key in clients) {
-			  rd++;
-			  taken[key] == roles[rd];
+			rd++;
+			taken[key] == roles[rd];
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
 	  }
 	  else if (players == 11) {
 		  roles = shuffle(roles11);
+		  dayvote = r11[0];
+		  nightvote = r11[1];
 		  for (var key in clients) {
-			  rd++;
-			  taken[key] == roles[rd];
+			rd++;
+			taken[key] == roles[rd];
 			clients[key].send('game§start');
 			clients[key].send('game§role§' + roles[rd]);
 		  }
@@ -204,6 +201,8 @@ webSocketServer.on('connection', function(ws) {
 	  for (var key in clients) {
 			clients[key].send('game§day');
 	  }
+	  tdv = dayvote;
+	  tnv = nightvote;
   }
  //TODO: Usual commands
   ws.on('close', function() {
